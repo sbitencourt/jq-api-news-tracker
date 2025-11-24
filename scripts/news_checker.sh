@@ -14,6 +14,8 @@ SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 BASE_DIR="$(dirname -- "${SCRIPT_DIR}")"
 CONFIG_DIR="$BASE_DIR/config"
 DATA_DIR="$BASE_DIR/data"
+RAW_DATA_DIR="$DATA_DIR/raw"
+CLEANED_DATA_DIR="$DATA_DIR/cleaned"
 
 # ==============================================================================
 # CONFIG OTHER VARIABLES
@@ -21,8 +23,12 @@ DATA_DIR="$BASE_DIR/data"
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 NEWS_API_KEY=$(cat "$CONFIG_DIR/.env" | grep NEWS_API_KEY | grep -oP '=\K\w+')
 QUERY="(Trump or US GOVERN) AND (crypto OR cryptocurrency OR bitcoin)"
+API_BASE_URL="https://newsapi.org/v2/everything?"
 
 # ==============================================================================
 # MAIN EXECUTION
 # ==============================================================================
-curl "https://newsapi.org/v2/everything?q=$QUERY&apiKey=$NEWS_API_KEY" >> "$date '+%Y%m%d%H%M%S'"
+
+curl -s --get "$API_BASE_URL" \
+     --data-urlencode "q=$QUERY" \
+     --data-urlencode "apiKey=$NEWS_API_KEY" >> "$RAW_DATA_DIR/$TIMESTAMP.txt"
