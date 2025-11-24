@@ -37,6 +37,7 @@ exec 2> >(tee -a "${ERR_FILE}" >&2)
 # ==============================================================================
 # MAIN EXECUTION
 # ==============================================================================
+echo "$TIMESTAMP - $SCRIPT_DIR/news_checker.sh" >> "$CONFIG_DIR/news_checker_path.log"
 
 curl -s --get "$API_BASE_URL" \
      --data-urlencode "q=$QUERY" \
