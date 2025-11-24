@@ -59,7 +59,7 @@ You need the following installed on your Linux system:
     ```
     Add the execution line using the absolute path found in `config/news_checker_path.log` (e.g., `/home/user/projects/jq-api-news-tracker/scripts/news_checker.sh`).
 
-    *Example (Running every 5 minutes):*
+    *Example (Running every 15 minutes):*
     ```crontab
-    */5 * * * * /bin/bash [ABSOLUTE_PATH]/scripts/news_checker.sh
+    */15 * * * * /bin/bash [ABSOLUTE_PATH]/scripts/news_checker.sh
     ```
