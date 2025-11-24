@@ -1,3 +1,4 @@
 .env
 data/
 log/
+config/news_checker_path.log
