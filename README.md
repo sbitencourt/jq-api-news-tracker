@@ -26,3 +26,40 @@ You need the following installed on your Linux system:
 * **cURL:** For making HTTP requests to the NewsAPI.
 * **JQ:** For parsing and manipulating the returned JSON data.
 * **Crontab:** For scheduling the script execution.
+
+### Setup and Configuration
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/sbitencourt/jq-api-news-tracker.git
+    cd jq-api-news-tracker
+    ```
+2.  **API Key Setup (.env):**  
+    Obtain a free API Key from **NewsAPI**. Then, populate the `.env` file located in the `config/` directory:
+
+    ```bash
+    # config/.env
+    NEWS_API_KEY="YOUR_API_KEY_HERE"
+    ```
+3.  **Grant Execution Permission:**  
+    Ensure the main script is executable:
+    ```bash
+    chmod +x scripts/news_checker.sh
+    ```
+4.  **Determine Absolute Path (Crontab Reference):**  
+    Run the script once to generate the path log. This file contains the exact absolute path required for Crontab configuration, guaranteeing portability across different machines:
+    ```bash
+    ./scripts/news_checker.sh
+    ```
+    The path will be saved in `config/news_checker_path.log`.
+5.  **Crontab Scheduling:**  
+    Edit your user crontab:
+    ```bash
+    crontab -e
+    ```
+    Add the execution line using the absolute path found in `config/news_checker_path.log` (e.g., `/home/user/projects/jq-api-news-tracker/scripts/news_checker.sh`).
+
+    *Example (Running every 5 minutes):*
+    ```crontab
+    */5 * * * * /bin/bash [ABSOLUTE_PATH]/scripts/news_checker.sh
+    ```
