@@ -8,7 +8,7 @@ set -o errexit
 set -o pipefail
 
 # ==============================================================================
-# DIRECTORY VARIABLES
+# PATH VARIABLES
 # ==============================================================================
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &> /dev/null && pwd)
 BASE_DIR="$(dirname -- "${SCRIPT_DIR}")"
@@ -25,8 +25,19 @@ TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 LOG_FILE="${LOG_DIR}/${TIMESTAMP}.log"
 ERR_FILE="${LOG_DIR}/${TIMESTAMP}.err"
 NEWS_API_KEY=$(cat "$CONFIG_DIR/.env" | grep NEWS_API_KEY | grep -oP '=\K\w+')
-QUERY="(Trump or US GOVERN) AND (crypto OR cryptocurrency OR bitcoin)"
 API_BASE_URL="https://newsapi.org/v2/everything?"
+
+# ==============================================================================
+# QUERY CONSTRUCTION
+# ==============================================================================
+AGENCIES=(SEC OR CFTC OR FinCEN OR IRS OR OCC OR Treasury OR Federal Reserve)
+MARKETS=(Crypto OR Digital Assets OR Cryptocurrency)
+PRODUCTS=(Bitcoin OR Ethereum OR Stablecoin OR DeFi OR NFT OR Cryptocurrency OR Custody OR KYC/AML OR blockchain)
+ACTIONS=(Enforcement Action OR Lawsuit OR Unregistered Security OR Fraud)
+RULES=(Regulation OR Framework OR Guidance OR Clarity Act OR Legislation OR Genius Act)
+ACTORS=(Trump OR US Government OR US OR United States OR America OR Congress OR Senate OR House of Representatives)
+
+QUERY="((${AGENCIES[*]}) OR (${ACTORS[*]})) AND ((${MARKETS[*]}) OR (${PRODUCTS[*]})) AND ((${ACTIONS[*]}) OR (${RULES[*]}))"
 
 # ==============================================================================
 # REDIRECT OUTPUTS TO LOG FILES
