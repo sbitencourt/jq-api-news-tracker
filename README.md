@@ -63,3 +63,11 @@ You need the following installed on your Linux system:
     ```crontab
     */15 * * * * /bin/bash [ABSOLUTE_PATH]/scripts/news_checker.sh
     ```
+
+## API Constraints
+If you opt to use the **Developer Plan (Free Tier)** of the News API — which was utilized for this project — please note the following critical limitations:
+
+* **Rate Limit:** You are restricted to approximately **100 requests per day** (i.e., **1 request every 15 minutes**). The Crontab schedule must adhere to this.
+* **Data Latency:** Articles returned by the API may have a **significant publishing date delay of at least 24 hours**. This means the API restricts the data window, making true "real-time" monitoring *not* achievable with this free plan.
+
+> **❗ For projects requiring true real-time data or higher query frequency, upgrading your News API plan or utilizing an alternative, paid data provider is necessary.**
