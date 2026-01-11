@@ -1,0 +1,12 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: jq_news_mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root    # set a username
+      MONGO_INITDB_ROOT_PASSWORD: passwd  # set a password
+    volumes:
+      - ./data/mongodb_data:/data/db
+    ports:
+      - "27017:27017"
