@@ -52,4 +52,4 @@ echo "$TIMESTAMP - $SCRIPT_DIR/news_checker.sh" >> "$CONFIG_DIR/news_checker_pat
 
 curl -s --get "$API_BASE_URL" \
      --data-urlencode "q=$QUERY" \
-     --data-urlencode "apiKey=$NEWS_API_KEY" >> "$RAW_DATA_DIR/$TIMESTAMP.txt"
+     --data-urlencode "apiKey=$NEWS_API_KEY" >> "$RAW_DATA_DIR/$TIMESTAMP.json"
