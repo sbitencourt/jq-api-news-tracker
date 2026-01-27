@@ -17,6 +17,7 @@ DATA_DIR="$BASE_DIR/data"
 RAW_DATA_DIR="$DATA_DIR/raw"
 CLEANED_DATA_DIR="$DATA_DIR/cleaned"
 LOG_DIR="$BASE_DIR/log"
+SRC_DIR="$BASE_DIR/src"
 
 # ==============================================================================
 # CONFIG OTHER VARIABLES
@@ -53,3 +54,8 @@ echo "$TIMESTAMP - $SCRIPT_DIR/news_checker.sh" >> "$CONFIG_DIR/news_checker_pat
 curl -s --get "$API_BASE_URL" \
      --data-urlencode "q=$QUERY" \
      --data-urlencode "apiKey=$NEWS_API_KEY" >> "$RAW_DATA_DIR/$TIMESTAMP.json"
+
+cd ${BASE_DIR}
+source .venv/bin/activate
+python3 ${SRC_DIR}/main.py
+deactivate
