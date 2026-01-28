@@ -24,7 +24,7 @@ The diagram below illustrates the end-to-end solution architecture, from schedul
 <img 
   src="assets/images/solution-architecture-v2.0.0.png" 
   alt="Solution Architecture"
-  width="800"
+  width="1000"
 />
 
 ## How to Use
