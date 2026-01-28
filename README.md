@@ -17,6 +17,16 @@ Este projeto implementa um **pipeline de aquisição de dados no lado do servido
 
 O sistema funciona de forma autônoma usando **Crontab** e combina **scripts Bash** e **Python**, utilizando **cURL** para interação com APIs e **ingestão em Python** para persistir os dados coletados no **MongoDB**. A instância do banco de dados é provisionada com **Docker Compose**, garantindo um ambiente isolado e reprodutível. O objetivo principal é demonstrar um pipeline de dados leve, resiliente e autossuficiente, capaz de ingerir e armazenar informações voláteis e sensíveis ao tempo para análises posteriores.
 
+## Solution Architecture
+
+The diagram below illustrates the end-to-end solution architecture, from scheduled data ingestion to persistent storage and real-time delivery.
+
+<img 
+  src="assets/images/solution-architecture-v2.0.0.png" 
+  alt="Solution Architecture"
+  width="800"
+/>
+
 ## How to Use
 
 ### Prerequisites
