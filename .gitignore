@@ -2,3 +2,5 @@
 data/
 log/
 config/news_checker_path.log
+.venv
+__pycache__/
